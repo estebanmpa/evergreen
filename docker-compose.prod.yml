@@ -1,0 +1,11 @@
+services:
+  evergreen-school:
+    build: .
+    container_name: evergreen-school-web
+    restart: unless-stopped
+    networks:
+      - proxy-network
+
+networks:
+  proxy-network:
+    external: true
