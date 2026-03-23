@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evergreen Spanish School</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lake: { 500: '#1d4ed8', 800: '#1e3a8a', 900: '#172554' }, // Blues
+                        mountain: { 500: '#166534', 600: '#15803d', 800: '#14532d' }, // Greens
+                        accent: { 500: '#ea580c', 600: '#c2410c' } // Warm orange/wood
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style> body { font-family: 'Inter', sans-serif; } </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased" x-data="{ courses: [
+    {id: 1, title: 'Conversación', desc: 'Mejora tu fluidez hablando con locales.', details: 'Clases enfocadas en la oratoria, modismos argentinos y comprensión auditiva activa.'},
+    {id: 2, title: 'Intensivo', desc: 'Inmersión total en poco tiempo.', details: '20 horas semanales. Gramática, vocabulario y práctica conversacional estructurada.'},
+    {id: 3, title: 'Para Viajeros', desc: 'Español de supervivencia y cultura.', details: 'Aprende a pedir en restaurantes, comprar pasajes y moverte por la Patagonia.'},
+    {id: 4, title: 'Online/Individual', desc: 'A tu propio ritmo y nivel.', details: 'Clases 1 a 1 adaptadas 100% a tus necesidades.', special: true}
+] }">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm" x-data="{ mobileMenuOpen: false }">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="#" class="text-2xl font-bold text-lake-800">Evergreen<span class="text-accent-500">Spanish</span></a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#cursos" class="text-gray-600 hover:text-lake-800 font-medium">Cursos</a>
+                    <a href="#aloja" class="text-gray-600 hover:text-lake-800 font-medium">Alojamientos</a>
+                    <a href="#nosotros" class="text-gray-600 hover:text-lake-800 font-medium">Quiénes Somos</a>
+                    <a href="#nivelacion" class="text-gray-600 hover:text-lake-800 font-medium">Test de Nivelación</a>
+                    <a href="#contacto" class="text-gray-600 hover:text-lake-800 font-medium">Contacto</a>
+                    <a href="#reservar" class="bg-accent-500 hover:bg-accent-600 text-white px-5 py-2.5 rounded-lg font-semibold shadow-lg shadow-accent-500/30 transition-all transform hover:-translate-y-0.5">Book</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative w-full h-[85vh] flex items-center justify-center bg-gray-900 overflow-hidden text-center px-4">
+        <div class="absolute inset-0 w-full h-full">
+            <img src="https://images.unsplash.com/photo-1617548437735-92d875423353?q=80&w=5787&auto=format&fit=crop" alt="Bariloche Mountains - Real Photo" class="w-full h-full object-cover opacity-80">
+            <div class="absolute inset-0 bg-gradient-to-t from-lake-900/80 to-transparent"></div>
+        </div>
+        <div class="relative z-10 max-w-4xl mx-auto">
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 drop-shadow-lg">Español en el <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-500 to-yellow-400">Fin del Mundo</span></h1>
+            <p class="text-xl md:text-2xl text-gray-200 mb-10 drop-shadow-md">Aprende con nativos mientras disfrutas la Patagonia Argentina.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#reservar" class="px-8 py-4 bg-accent-500 hover:bg-accent-600 text-white rounded-lg text-lg font-semibold shadow-xl transition-transform hover:-translate-y-1">Reservar Ahora</a>
+                <a href="#contacto" class="px-8 py-4 bg-white/20 hover:bg-white/30 backdrop-blur-md text-white border border-white/50 rounded-lg text-lg font-semibold transition-all">Contacto</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Cursos -->
+    <section id="cursos" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-lake-900 mb-4">Nuestros Cursos</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <template x-for="course in courses" :key="course.id">
+                    <div :class="course.special ? 'border-2 border-accent-500 shadow-xl scale-105 relative' : 'border border-gray-100 shadow-lg'" class="bg-white rounded-2xl p-6 flex flex-col h-full transition-transform hover:-translate-y-1">
+                        <div x-show="course.special" class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-accent-500 text-white px-4 py-1 rounded-full text-xs font-bold uppercase shadow-md">Privado</div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3" x-text="course.title"></h3>
+                        <p class="text-gray-600 mb-6 flex-grow" x-text="course.desc"></p>
+                        <a :href="'curso.html?id=' + course.id" class="w-full py-2.5 rounded-lg font-semibold border transition-colors text-center" :class="course.special ? 'bg-accent-50 text-accent-600 border-accent-200 hover:bg-accent-100' : 'bg-gray-50 text-lake-800 border-gray-200 hover:bg-gray-100'">Ver detalle</a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </section>
+
+    <!-- Test de Nivelación -->
+    <section id="nivelacion" class="py-24 bg-gray-50" x-data="{ 
+        step: 0, ans: {}, proc: false, res: null,
+        next() { this.step < 3 ? this.step++ : this.finish(); },
+        finish() { this.step = 4; this.proc = true; setTimeout(() => { this.proc = false; this.res = 'B1 (Intermedio)'; }, 2000); }
+    }">
+        <div class="max-w-2xl mx-auto px-4">
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden text-center">
+                <div class="bg-mountain-600 p-8">
+                    <h2 class="text-3xl font-bold text-white">Test de Nivelación</h2>
+                </div>
+                <div class="p-8 min-h-[300px] flex flex-col justify-center items-center">
+                    
+                    <!-- Intro -->
+                    <div x-show="step === 0">
+                        <p class="text-gray-600 mb-6">Responde 3 preguntas para descubrir tu nivel aproximado.</p>
+                        <button @click="step = 1" class="bg-mountain-600 text-white px-8 py-3 rounded-lg font-semibold">Comenzar</button>
+                    </div>
+
+                    <!-- P1 -->
+                    <div x-show="step === 1" style="display: none;" class="w-full">
+                        <h3 class="text-xl font-bold mb-4">"Ayer yo ______ al supermercado."</h3>
+                        <div class="space-y-3">
+                            <label class="block p-3 border rounded-lg cursor-pointer"><input type="radio" value="a" x-model="ans[1]"> voy</label>
+                            <label class="block p-3 border rounded-lg cursor-pointer"><input type="radio" value="c" x-model="ans[1]"> fui</label>
+                        </div>
+                        <button @click="next()" :disabled="!ans[1]" class="mt-6 bg-gray-900 text-white px-6 py-2 rounded-lg">Siguiente</button>
+                    </div>
+
+                    <!-- P2 -->
+                    <div x-show="step === 2" style="display: none;" class="w-full">
+                        <h3 class="text-xl font-bold mb-4">"Si tuviera dinero, ______."</h3>
+                        <div class="space-y-3">
+                            <label class="block p-3 border rounded-lg cursor-pointer"><input type="radio" value="b" x-model="ans[2]"> viajaría</label>
+                            <label class="block p-3 border rounded-lg cursor-pointer"><input type="radio" value="c" x-model="ans[2]"> viajaba</label>
+                        </div>
+                        <button @click="next()" :disabled="!ans[2]" class="mt-6 bg-gray-900 text-white px-6 py-2 rounded-lg">Siguiente</button>
+                    </div>
+
+                    <!-- P3 -->
+                    <div x-show="step === 3" style="display: none;" class="w-full">
+                        <h3 class="text-xl font-bold mb-4">"Es importante que ______."</h3>
+                        <div class="space-y-3">
+                            <label class="block p-3 border rounded-lg cursor-pointer"><input type="radio" value="a" x-model="ans[3]"> vienes</label>
+                            <label class="block p-3 border rounded-lg cursor-pointer"><input type="radio" value="b" x-model="ans[3]"> vengas</label>
+                        </div>
+                        <button @click="next()" :disabled="!ans[3]" class="mt-6 bg-accent-500 text-white px-6 py-2 rounded-lg">Finalizar</button>
+                    </div>
+
+                    <!-- Res -->
+                    <div x-show="step === 4" style="display: none;" class="w-full">
+                        <div x-show="proc" class="animate-pulse text-mountain-600 font-bold text-xl">Procesando...</div>
+                        <div x-show="!proc" style="display: none;">
+                            <h3 class="text-lg text-gray-500 mb-2">Nivel sugerido:</h3>
+                            <div class="text-4xl font-extrabold text-lake-800" x-text="res"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="py-24 bg-lake-900 text-white text-center">
+        <div class="max-w-5xl mx-auto px-4">
+            <h2 class="text-4xl font-bold mb-12">Lo que dicen nuestros alumnos</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white/10 p-8 rounded-2xl backdrop-blur-md">
+                    <p class="mb-4 text-lg">"The best teachers and an amazing city."</p>
+                    <div class="font-bold">- Sarah (USA)</div>
+                </div>
+                <div class="bg-white/10 p-8 rounded-2xl backdrop-blur-md">
+                    <p class="mb-4 text-lg">"Intensive course helped me so much."</p>
+                    <div class="font-bold">- Lucas (Germany)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-950 text-gray-400 py-12 text-center">
+        <div class="max-w-4xl mx-auto px-4">
+            <h3 class="text-2xl font-bold text-white mb-4">Evergreen<span class="text-accent-500">Spanish</span></h3>
+            <p>info@evergreen-spanish.com | +54 9 294 4123456</p>
+            <p class="mt-8">&copy; 2026 Evergreen Spanish School.</p>
+        </div>
+    </footer>
+</body>
+</html>

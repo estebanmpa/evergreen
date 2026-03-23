@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Curso - Evergreen Spanish School</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lake: { 500: '#1d4ed8', 800: '#1e3a8a', 900: '#172554' }, // Blues
+                        mountain: { 500: '#166534', 600: '#15803d', 800: '#14532d' }, // Greens
+                        accent: { 500: '#ea580c', 600: '#c2410c' } // Warm orange/wood
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style> body { font-family: 'Inter', sans-serif; } </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased" x-data="{ 
+    courseId: null,
+    course: null,
+    courses: [
+        {id: 1, title: 'Conversación', desc: 'Mejora tu fluidez hablando con locales.', details: 'Clases enfocadas en la oratoria, modismos argentinos y comprensión auditiva activa.', long_desc: 'Nuestro curso de conversación está diseñado para estudiantes que ya tienen una base de gramática y desean ponerla en práctica. Nos enfocamos en situaciones reales: desde debates sobre actualidad hasta juegos de rol sobre situaciones cotidianas en Bariloche. Aprenderás el famoso voseo argentino y las expresiones locales que te harán sonar como un nativo.'},
+        {id: 2, title: 'Intensivo', desc: 'Inmersión total en poco tiempo.', details: '20 horas semanales. Gramática, vocabulario y práctica conversacional estructurada.', long_desc: 'El programa intensivo es nuestra opción más popular. Diseñado para quienes quieren ver resultados rápidos. Tendrás 4 horas diarias de clases grupales reducidas, donde cubrimos todos los aspectos del idioma: gramática, escritura, lectura y conversación. Incluye materiales de estudio y actividades culturales después de clase.'},
+        {id: 3, title: 'Para Viajeros', desc: 'Español de supervivencia y cultura.', details: 'Aprende a pedir en restaurantes, comprar pasajes y moverte por la Patagonia.', long_desc: '¿Estás de paso por la Patagonia y quieres comunicarte mejor? Este curso de una semana te da las herramientas esenciales. No nos perderemos en gramática compleja, sino que practicaremos diálogos útiles para viajar: transporte, alojamiento, comida y emergencias. Además, te daremos los mejores tips locales para tu viaje.'},
+        {id: 4, title: 'Online/Individual', desc: 'A tu propio ritmo y nivel.', details: 'Clases 1 a 1 adaptadas 100% a tus necesidades.', long_desc: 'Nuestras clases particulares son la forma más eficiente de aprender. El profesor se adapta totalmente a tus tiempos, intereses y nivel previo. Puedes tomarlas de forma presencial u online desde cualquier parte del mundo. Ideal para profesionales con poco tiempo o estudiantes con objetivos específicos (exámenes, negocios, etc).', special: true}
+    ],
+    init() {
+        const urlParams = new URLSearchParams(window.location.search);
+        this.courseId = parseInt(urlParams.get('id'));
+        this.course = this.courses.find(c => c.id === this.courseId);
+        if(!this.course) {
+            window.location.href = 'index.html';
+        }
+    }
+}">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="text-2xl font-bold text-lake-800">Evergreen<span class="text-accent-500">Spanish</span></a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html#cursos" class="text-gray-600 hover:text-lake-800 font-medium">Cursos</a>
+                    <a href="index.html#aloja" class="text-gray-600 hover:text-lake-800 font-medium">Alojamientos</a>
+                    <a href="index.html#nosotros" class="text-gray-600 hover:text-lake-800 font-medium">Quiénes Somos</a>
+                    <a href="index.html#contacto" class="text-gray-600 hover:text-lake-800 font-medium">Contacto</a>
+                    <a href="index.html#reservar" class="bg-accent-500 hover:bg-accent-600 text-white px-5 py-2.5 rounded-lg font-semibold shadow-lg shadow-accent-500/30 transition-all transform hover:-translate-y-0.5">Book</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Course Content -->
+    <main class="py-12 md:py-24" x-show="course">
+        <div class="max-w-4xl mx-auto px-4">
+            <!-- Breadcrumb -->
+            <nav class="flex mb-8 text-sm font-medium text-gray-500" aria-label="Breadcrumb">
+                <ol class="flex items-center space-x-2">
+                    <li><a href="index.html" class="hover:text-lake-800">Inicio</a></li>
+                    <li><svg class="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 senior 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg></li>
+                    <li><a href="index.html#cursos" class="hover:text-lake-800">Cursos</a></li>
+                    <li><svg class="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 senior 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg></li>
+                    <li class="text-lake-900" x-text="course?.title"></li>
+                </ol>
+            </nav>
+
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
+                <!-- Header Image -->
+                <div class="h-64 md:h-96 relative">
+                    <img :src="'https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?q=80&w=2600&auto=format&fit=crop'" alt="Patagonia" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-bottom p-8">
+                        <div class="mt-auto">
+                            <span x-show="course?.special" class="bg-accent-500 text-white px-3 py-1 rounded-full text-xs font-bold uppercase mb-4 inline-block">Membresía Premium</span>
+                            <h1 class="text-4xl md:text-5xl font-extrabold text-white" x-text="course?.title"></h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-8 md:p-12">
+                    <div class="flex flex-col md:flex-row gap-12">
+                        <div class="flex-grow">
+                            <h2 class="text-2xl font-bold text-gray-900 mb-6">Sobre este curso</h2>
+                            <p class="text-xl text-gray-600 mb-8 leading-relaxed" x-text="course?.long_desc"></p>
+                            
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Lo que aprenderás:</h3>
+                            <ul class="space-y-4 mb-8">
+                                <template x-for="item in course?.details.split('. ').filter(s => s)">
+                                    <li class="flex items-start">
+                                        <svg class="h-6 w-6 text-mountain-500 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <span class="text-gray-700" x-text="item"></span>
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+
+                        <div class="w-full md:w-80 flex-shrink-0">
+                            <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 sticky top-24">
+                                <h3 class="text-lg font-bold text-gray-900 mb-4">¿Te interesa?</h3>
+                                <p class="text-sm text-gray-500 mb-6">Completa tu reserva o contáctanos para más información sobre fechas y horarios.</p>
+                                <a href="index.html#reservar" class="block w-full text-center bg-accent-500 hover:bg-accent-600 text-white py-4 rounded-xl font-bold shadow-lg shadow-accent-500/20 transition-all transform hover:-translate-y-0.5 mb-4">Reservar ahora</a>
+                                <a href="index.html#contacto" class="block w-full text-center bg-white border border-gray-200 hover:border-lake-500 text-lake-800 py-4 rounded-xl font-bold transition-all">Consultar dudas</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- More Info -->
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100">
+                    <div class="w-12 h-12 bg-lake-50 rounded-xl flex items-center justify-center text-lake-600 mb-4">
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    </div>
+                    <h4 class="font-bold text-gray-900 mb-2">Flexibilidad</h4>
+                    <p class="text-sm text-gray-600">Elige la cantidad de semanas y el horario que mejor se adapte a tu viaje.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100">
+                    <div class="w-12 h-12 bg-mountain-50 rounded-xl flex items-center justify-center text-mountain-600 mb-4">
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                    </div>
+                    <h4 class="font-bold text-gray-900 mb-2">Grupos reducidos</h4>
+                    <p class="text-sm text-gray-600">Máximo 6 personas por clase para garantizar atención personalizada.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100">
+                    <div class="w-12 h-12 bg-accent-50 rounded-xl flex items-center justify-center text-accent-600 mb-4">
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+                    </div>
+                    <h4 class="font-bold text-gray-900 mb-2">Certificado</h4>
+                    <p class="text-sm text-gray-600">Recibe un certificado de asistencia y nivel al finalizar tu curso.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-950 text-gray-400 py-12 text-center mt-24">
+        <div class="max-w-4xl mx-auto px-4">
+            <h3 class="text-2xl font-bold text-white mb-4">Evergreen<span class="text-accent-500">Spanish</span></h3>
+            <p>info@evergreen-spanish.com | +54 9 294 4123456</p>
+            <p class="mt-8">&copy; 2026 Evergreen Spanish School.</p>
+        </div>
+    </footer>
+</body>
+</html>

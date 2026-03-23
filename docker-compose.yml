@@ -1,0 +1,18 @@
+services:
+  evergreen-school:
+    build: .
+    container_name: evergreen-school-web
+    restart: always
+    # Expongo el puerto 8080 en el host para que el Nginx del VPS lo pueda usar.
+    # Puedes cambiar el "8080" por el que prefieras.
+    ports:
+      - "8080:80"
+    
+    # Si tu NGINX de reverse proxy está en Docker y usa una red compartida,
+    # descomenta las siguientes líneas y ajusta el nombre de la red:
+    # networks:
+    #   - proxy_network
+
+# networks:
+#   proxy_network:
+#     external: true
