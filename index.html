@@ -3,214 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evergreen Spanish School</title>
-    <!-- Tailwind CSS via CDN -->
+    <title>Evergreen Spanish School | Study Spanish in Patagonia</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        lake: { 500: '#1d4ed8', 800: '#1e3a8a', 900: '#172554' }, // Blues
-                        mountain: { 500: '#166534', 600: '#15803d', 800: '#14532d' }, // Greens
-                        accent: { 500: '#ea580c', 600: '#c2410c' } // Warm orange/wood
+                        brand: { 50: "#eef2ff", 600: "#4f46e5", 700: "#4338ca", 900: "#1e1b4b" },
+                        accent: { 500: "#14b8a6", 600: "#0d9488" }
                     },
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                    }
+                    fontFamily: { sans: ["Inter", "system-ui", "sans-serif"] }
                 }
             }
-        }
+        };
     </script>
-    <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style> 
-        body { font-family: 'Inter', sans-serif; } 
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: "Inter", sans-serif; }
         [x-cloak] { display: none !important; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 antialiased" x-data="{ courses: [
-    {id: 1, title: 'Conversación', desc: 'Mejora tu fluidez hablando con locales.', details: 'Clases enfocadas en la oratoria, modismos argentinos y comprensión auditiva activa.'},
-    {id: 2, title: 'Intensivo', desc: 'Inmersión total en poco tiempo.', details: '20 horas semanales. Gramática, vocabulario y práctica conversacional estructurada.'},
-    {id: 3, title: 'Para Viajeros', desc: 'Español de supervivencia y cultura.', details: 'Aprende a pedir en restaurantes, comprar pasajes y moverte por la Patagonia.'},
-    {id: 4, title: 'Online/Individual', desc: 'A tu propio ritmo y nivel.', details: 'Clases 1 a 1 adaptadas 100% a tus necesidades.', special: true}
+<body class="bg-slate-50 text-slate-800 antialiased" x-data="{ courses: [
+    { id: 1, title: 'Conversation Lab', desc: 'Build confidence with real-life speaking practice.', tag: 'Small groups' },
+    { id: 2, title: 'Intensive Spanish', desc: 'Fast progress for students staying 2-12 weeks.', tag: '20h / week' },
+    { id: 3, title: 'Spanish for Travelers', desc: 'Essential language for Patagonia adventures.', tag: '1 week' },
+    { id: 4, title: 'Private Online Classes', desc: '1:1 classes focused on your goals and schedule.', tag: 'Flexible', special: true }
 ] }">
-
-    <!-- Navbar -->
-    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm" x-data="{ mobileMenuOpen: false }">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <a href="#" class="text-2xl font-bold text-lake-800">Evergreen<span class="text-accent-500">Spanish</span></a>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#cursos" class="text-gray-600 hover:text-lake-800 font-medium">Cursos</a>
-                    <a href="#aloja" class="text-gray-600 hover:text-lake-800 font-medium">Alojamientos</a>
-                    <a href="#nosotros" class="text-gray-600 hover:text-lake-800 font-medium">Quiénes Somos</a>
-                    <a href="#nivelacion" class="text-gray-600 hover:text-lake-800 font-medium">Test de Nivelación</a>
-                    <a href="#contacto" class="text-gray-600 hover:text-lake-800 font-medium">Contacto</a>
-                    <a href="#reservar" class="bg-accent-500 hover:bg-accent-600 text-white px-5 py-2.5 rounded-lg font-semibold shadow-lg shadow-accent-500/30 transition-all transform hover:-translate-y-0.5">Book</a>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-gray-600 hover:text-lake-800 focus:outline-none p-2">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path x-show="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                            <path x-show="mobileMenuOpen" x-cloak stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
+    <nav class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur" x-data="{ mobileMenuOpen: false }">
+        <div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
+            <a href="#" class="text-xl font-bold text-brand-900">Evergreen<span class="text-brand-600">Spanish</span></a>
+            <div class="hidden items-center gap-7 md:flex">
+                <a href="#programs" class="text-sm font-medium text-slate-600 hover:text-brand-700">Programs</a>
+                <a href="accommodation.html" class="text-sm font-medium text-slate-600 hover:text-brand-700">Accommodation</a>
+                <a href="#why-us" class="text-sm font-medium text-slate-600 hover:text-brand-700">Why us</a>
+                <a href="#placement" class="text-sm font-medium text-slate-600 hover:text-brand-700">Placement test</a>
+                <a href="contact.html" class="text-sm font-medium text-slate-600 hover:text-brand-700">Contact</a>
+                <a href="contact.html" class="rounded-full bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700">Apply now</a>
             </div>
+            <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden rounded-md p-2 text-slate-600">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path x-show="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    <path x-show="mobileMenuOpen" x-cloak stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
         </div>
-
-        <!-- Mobile Menu Panel -->
-        <div x-show="mobileMenuOpen" 
-             x-cloak
-             x-transition:enter="transition ease-out duration-200"
-             x-transition:enter-start="opacity-0 -translate-y-4"
-             x-transition:enter-end="opacity-100 translate-y-0"
-             x-transition:leave="transition ease-in duration-150"
-             x-transition:leave-start="opacity-100 translate-y-0"
-             x-transition:leave-end="opacity-0 -translate-y-4"
-             class="md:hidden bg-white border-b border-gray-100 absolute w-full left-0 z-40 shadow-xl"
-             @click.away="mobileMenuOpen = false">
-            <div class="px-4 pt-2 pb-6 space-y-1 sm:px-3 text-center">
-                <a href="#cursos" @click="mobileMenuOpen = false" class="block px-3 py-4 text-base font-medium text-gray-700 hover:text-lake-800 hover:bg-gray-50 rounded-lg">Cursos</a>
-                <a href="#aloja" @click="mobileMenuOpen = false" class="block px-3 py-4 text-base font-medium text-gray-700 hover:text-lake-800 hover:bg-gray-50 rounded-lg">Alojamientos</a>
-                <a href="#nosotros" @click="mobileMenuOpen = false" class="block px-3 py-4 text-base font-medium text-gray-700 hover:text-lake-800 hover:bg-gray-50 rounded-lg">Quiénes Somos</a>
-                <a href="#nivelacion" @click="mobileMenuOpen = false" class="block px-3 py-4 text-base font-medium text-gray-700 hover:text-lake-800 hover:bg-gray-50 rounded-lg">Test de Nivelación</a>
-                <a href="#contacto" @click="mobileMenuOpen = false" class="block px-3 py-4 text-base font-medium text-gray-700 hover:text-lake-800 hover:bg-gray-50 rounded-lg">Contacto</a>
-                <div class="pt-4">
-                    <a href="#reservar" @click="mobileMenuOpen = false" class="block w-full bg-accent-500 text-white px-5 py-3 rounded-lg font-bold">Book</a>
-                </div>
+        <div x-show="mobileMenuOpen" x-cloak class="border-t border-slate-200 bg-white md:hidden">
+            <div class="space-y-1 px-4 py-4 text-center">
+                <a href="#programs" @click="mobileMenuOpen = false" class="block rounded-lg px-3 py-2 text-slate-700">Programs</a>
+                <a href="accommodation.html" @click="mobileMenuOpen = false" class="block rounded-lg px-3 py-2 text-slate-700">Accommodation</a>
+                <a href="#why-us" @click="mobileMenuOpen = false" class="block rounded-lg px-3 py-2 text-slate-700">Why us</a>
+                <a href="#placement" @click="mobileMenuOpen = false" class="block rounded-lg px-3 py-2 text-slate-700">Placement test</a>
+                <a href="contact.html" @click="mobileMenuOpen = false" class="block rounded-lg px-3 py-2 text-slate-700">Contact</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="relative w-full h-[85vh] flex items-center justify-center bg-gray-900 overflow-hidden text-center px-4">
-        <div class="absolute inset-0 w-full h-full">
-            <img src="https://images.unsplash.com/photo-1617548437735-92d875423353?q=80&w=5787&auto=format&fit=crop" alt="Bariloche Mountains - Real Photo" class="w-full h-full object-cover opacity-80">
-            <div class="absolute inset-0 bg-gradient-to-t from-lake-900/80 to-transparent"></div>
-        </div>
-        <div class="relative z-10 max-w-4xl mx-auto">
-            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 drop-shadow-lg">Español en el <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-500 to-yellow-400">Fin del Mundo</span></h1>
-            <p class="text-xl md:text-2xl text-gray-200 mb-10 drop-shadow-md">Aprende con nativos mientras disfrutas la Patagonia Argentina.</p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#reservar" class="px-8 py-4 bg-accent-500 hover:bg-accent-600 text-white rounded-lg text-lg font-semibold shadow-xl transition-transform hover:-translate-y-1">Reservar Ahora</a>
-                <a href="#contacto" class="px-8 py-4 bg-white/20 hover:bg-white/30 backdrop-blur-md text-white border border-white/50 rounded-lg text-lg font-semibold transition-all">Contacto</a>
+    <header class="relative overflow-hidden bg-white">
+        <div class="absolute inset-0 bg-gradient-to-b from-brand-50 to-transparent"></div>
+        <div class="relative mx-auto grid max-w-6xl gap-12 px-4 py-20 sm:px-6 md:grid-cols-2 md:items-center lg:px-8">
+            <div>
+                <p class="mb-4 inline-flex rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-700">For international students</p>
+                <h1 class="text-4xl font-extrabold leading-tight text-slate-900 md:text-5xl">Learn Spanish in Bariloche with a modern, student-first program.</h1>
+                <p class="mt-5 text-lg text-slate-600">Study in Patagonia, practice with native teachers, and live a complete cultural experience in a friendly environment.</p>
+                <div class="mt-8 flex flex-wrap gap-3">
+                    <a href="contact.html" class="rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-700">Start your application</a>
+                    <a href="#programs" class="rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 hover:border-brand-600 hover:text-brand-700">View programs</a>
+                </div>
+            </div>
+            <div class="overflow-hidden rounded-3xl shadow-2xl shadow-brand-900/10">
+                <img src="https://images.unsplash.com/photo-1617548437735-92d875423353?q=80&w=2200&auto=format&fit=crop" alt="Students in Patagonia" class="h-[420px] w-full object-cover">
             </div>
         </div>
     </header>
 
-    <!-- Cursos -->
-    <section id="cursos" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-lake-900 mb-4">Nuestros Cursos</h2>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <template x-for="course in courses" :key="course.id">
-                    <div :class="course.special ? 'border-2 border-accent-500 shadow-xl scale-105 relative' : 'border border-gray-100 shadow-lg'" class="bg-white rounded-2xl p-6 flex flex-col h-full transition-transform hover:-translate-y-1">
-                        <div x-show="course.special" class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-accent-500 text-white px-4 py-1 rounded-full text-xs font-bold uppercase shadow-md">Privado</div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-3" x-text="course.title"></h3>
-                        <p class="text-gray-600 mb-6 flex-grow" x-text="course.desc"></p>
-                        <a :href="'curso.html?id=' + course.id" class="w-full py-2.5 rounded-lg font-semibold border transition-colors text-center" :class="course.special ? 'bg-accent-50 text-accent-600 border-accent-200 hover:bg-accent-100' : 'bg-gray-50 text-lake-800 border-gray-200 hover:bg-gray-100'">Ver detalle</a>
-                    </div>
-                </template>
-            </div>
+    <section id="programs" class="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
+        <div class="mb-12 text-center">
+            <h2 class="text-3xl font-bold text-slate-900 md:text-4xl">Programs designed for your goals</h2>
+            <p class="mx-auto mt-4 max-w-2xl text-slate-600">Choose a format that matches your learning style, travel plan, and weekly availability.</p>
+        </div>
+        <div class="grid gap-6 md:grid-cols-2">
+            <template x-for="course in courses" :key="course.id">
+                <article class="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+                    <p :class="course.special ? 'text-accent-600 bg-accent-50' : 'text-brand-700 bg-brand-50'" class="mb-4 inline-flex rounded-full px-2.5 py-1 text-xs font-semibold" x-text="course.tag"></p>
+                    <h3 class="text-2xl font-bold text-slate-900" x-text="course.title"></h3>
+                    <p class="mt-3 text-slate-600" x-text="course.desc"></p>
+                    <a :href="'course.html?id=' + course.id" class="mt-6 inline-flex text-sm font-semibold text-brand-700 hover:text-brand-900">See details →</a>
+                </article>
+            </template>
         </div>
     </section>
 
-    <!-- Test de Nivelación -->
-    <section id="nivelacion" class="py-24 bg-gray-50" x-data="{ 
-        step: 0, ans: {}, proc: false, res: null,
-        next() { this.step < 3 ? this.step++ : this.finish(); },
-        finish() { this.step = 4; this.proc = true; setTimeout(() => { this.proc = false; this.res = 'B1 (Intermedio)'; }, 2000); }
-    }">
-        <div class="max-w-2xl mx-auto px-4">
-            <div class="bg-white rounded-3xl shadow-xl overflow-hidden text-center">
-                <div class="bg-mountain-600 p-8">
-                    <h2 class="text-3xl font-bold text-white">Test de Nivelación</h2>
+    <section id="why-us" class="border-y border-slate-200 bg-white">
+        <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+            <div class="grid gap-8 md:grid-cols-3">
+                <div>
+                    <h3 class="text-lg font-semibold text-slate-900">Academic quality</h3>
+                    <p class="mt-2 text-sm text-slate-600">Certified teachers, communicative methodology, and personalized feedback every week.</p>
                 </div>
-                <div class="p-8 min-h-[300px] flex flex-col justify-center items-center">
-                    
-                    <!-- Intro -->
-                    <div x-show="step === 0">
-                        <p class="text-gray-600 mb-6">Responde 3 preguntas para descubrir tu nivel aproximado.</p>
-                        <button @click="step = 1" class="bg-mountain-600 text-white px-8 py-3 rounded-lg font-semibold">Comenzar</button>
-                    </div>
-
-                    <!-- P1 -->
-                    <div x-show="step === 1" style="display: none;" class="w-full">
-                        <h3 class="text-xl font-bold mb-4">"Ayer yo ______ al supermercado."</h3>
-                        <div class="space-y-3">
-                            <label class="block p-3 border rounded-lg cursor-pointer"><input type="radio" value="a" x-model="ans[1]"> voy</label>
-                            <label class="block p-3 border rounded-lg cursor-pointer"><input type="radio" value="c" x-model="ans[1]"> fui</label>
-                        </div>
-                        <button @click="next()" :disabled="!ans[1]" class="mt-6 bg-gray-900 text-white px-6 py-2 rounded-lg">Siguiente</button>
-                    </div>
-
-                    <!-- P2 -->
-                    <div x-show="step === 2" style="display: none;" class="w-full">
-                        <h3 class="text-xl font-bold mb-4">"Si tuviera dinero, ______."</h3>
-                        <div class="space-y-3">
-                            <label class="block p-3 border rounded-lg cursor-pointer"><input type="radio" value="b" x-model="ans[2]"> viajaría</label>
-                            <label class="block p-3 border rounded-lg cursor-pointer"><input type="radio" value="c" x-model="ans[2]"> viajaba</label>
-                        </div>
-                        <button @click="next()" :disabled="!ans[2]" class="mt-6 bg-gray-900 text-white px-6 py-2 rounded-lg">Siguiente</button>
-                    </div>
-
-                    <!-- P3 -->
-                    <div x-show="step === 3" style="display: none;" class="w-full">
-                        <h3 class="text-xl font-bold mb-4">"Es importante que ______."</h3>
-                        <div class="space-y-3">
-                            <label class="block p-3 border rounded-lg cursor-pointer"><input type="radio" value="a" x-model="ans[3]"> vienes</label>
-                            <label class="block p-3 border rounded-lg cursor-pointer"><input type="radio" value="b" x-model="ans[3]"> vengas</label>
-                        </div>
-                        <button @click="next()" :disabled="!ans[3]" class="mt-6 bg-accent-500 text-white px-6 py-2 rounded-lg">Finalizar</button>
-                    </div>
-
-                    <!-- Res -->
-                    <div x-show="step === 4" style="display: none;" class="w-full">
-                        <div x-show="proc" class="animate-pulse text-mountain-600 font-bold text-xl">Procesando...</div>
-                        <div x-show="!proc" style="display: none;">
-                            <h3 class="text-lg text-gray-500 mb-2">Nivel sugerido:</h3>
-                            <div class="text-4xl font-extrabold text-lake-800" x-text="res"></div>
-                        </div>
-                    </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-slate-900">International community</h3>
+                    <p class="mt-2 text-sm text-slate-600">Meet students from around the world and build your Spanish through real interaction.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-slate-900">Local immersion</h3>
+                    <p class="mt-2 text-sm text-slate-600">Combine classes with city life, cultural activities, and nature in Patagonia.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Reviews -->
-    <section class="py-24 bg-lake-900 text-white text-center">
-        <div class="max-w-5xl mx-auto px-4">
-            <h2 class="text-4xl font-bold mb-12">Lo que dicen nuestros alumnos</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white/10 p-8 rounded-2xl backdrop-blur-md">
-                    <p class="mb-4 text-lg">"The best teachers and an amazing city."</p>
-                    <div class="font-bold">- Sarah (USA)</div>
-                </div>
-                <div class="bg-white/10 p-8 rounded-2xl backdrop-blur-md">
-                    <p class="mb-4 text-lg">"Intensive course helped me so much."</p>
-                    <div class="font-bold">- Lucas (Germany)</div>
-                </div>
+    <section id="placement" class="mx-auto max-w-3xl px-4 py-20 sm:px-6" x-data="{ step: 0, ans: {}, res: '' }">
+        <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm md:p-10">
+            <h2 class="text-center text-3xl font-bold text-slate-900">Quick Placement Test</h2>
+            <p class="mx-auto mt-3 max-w-xl text-center text-slate-600">Answer 3 short questions and get an approximate level instantly.</p>
+
+            <div class="mt-8" x-show="step === 0">
+                <button @click="step = 1" class="w-full rounded-xl bg-brand-600 px-5 py-3 font-semibold text-white hover:bg-brand-700">Start test</button>
+            </div>
+
+            <div class="mt-8 space-y-5" x-show="step === 1" style="display:none;">
+                <h3 class="text-lg font-semibold text-slate-900">1) Yesterday I ______ to class.</h3>
+                <label class="block rounded-xl border border-slate-200 p-3"><input type="radio" x-model="ans[1]" value="A"> go</label>
+                <label class="block rounded-xl border border-slate-200 p-3"><input type="radio" x-model="ans[1]" value="B"> went</label>
+                <button @click="step = 2" :disabled="!ans[1]" class="rounded-xl bg-slate-900 px-5 py-2.5 font-semibold text-white disabled:opacity-50">Next</button>
+            </div>
+
+            <div class="mt-8 space-y-5" x-show="step === 2" style="display:none;">
+                <h3 class="text-lg font-semibold text-slate-900">2) If I had more time, I ______ Spanish every day.</h3>
+                <label class="block rounded-xl border border-slate-200 p-3"><input type="radio" x-model="ans[2]" value="A"> practice</label>
+                <label class="block rounded-xl border border-slate-200 p-3"><input type="radio" x-model="ans[2]" value="B"> would practice</label>
+                <button @click="step = 3" :disabled="!ans[2]" class="rounded-xl bg-slate-900 px-5 py-2.5 font-semibold text-white disabled:opacity-50">Next</button>
+            </div>
+
+            <div class="mt-8 space-y-5" x-show="step === 3" style="display:none;">
+                <h3 class="text-lg font-semibold text-slate-900">3) It is important that she ______ on time.</h3>
+                <label class="block rounded-xl border border-slate-200 p-3"><input type="radio" x-model="ans[3]" value="A"> arrives</label>
+                <label class="block rounded-xl border border-slate-200 p-3"><input type="radio" x-model="ans[3]" value="B"> arrive</label>
+                <button @click="res = 'B1 - Intermediate'; step = 4" :disabled="!ans[3]" class="rounded-xl bg-accent-500 px-5 py-2.5 font-semibold text-white hover:bg-accent-600 disabled:opacity-50">Get result</button>
+            </div>
+
+            <div class="mt-8 text-center" x-show="step === 4" style="display:none;">
+                <p class="text-sm uppercase tracking-wide text-slate-500">Recommended level</p>
+                <p class="mt-2 text-4xl font-extrabold text-brand-700" x-text="res"></p>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-950 text-gray-400 py-12 text-center">
-        <div class="max-w-4xl mx-auto px-4">
-            <h3 class="text-2xl font-bold text-white mb-4">Evergreen<span class="text-accent-500">Spanish</span></h3>
-            <p>info@evergreen-spanish.com | +54 9 294 4123456</p>
-            <p class="mt-8">&copy; 2026 Evergreen Spanish School.</p>
+    <footer class="border-t border-slate-200 bg-white">
+        <div class="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-10 text-sm text-slate-500 sm:px-6 lg:px-8 md:flex-row md:items-center md:justify-between">
+            <p class="font-semibold text-slate-700">Evergreen Spanish School</p>
+            <p>Bariloche, Patagonia Argentina</p>
+            <p>info@evergreen-spanish.com</p>
         </div>
     </footer>
 </body>

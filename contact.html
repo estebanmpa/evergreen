@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Evergreen Spanish School</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 50: "#eef2ff", 600: "#4f46e5", 700: "#4338ca", 900: "#1e1b4b" },
+                        accent: { 500: "#14b8a6", 600: "#0d9488" }
+                    },
+                    fontFamily: { sans: ["Inter", "system-ui", "sans-serif"] }
+                }
+            }
+        };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: "Inter", sans-serif; }
+        [x-cloak] { display: none !important; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased" x-data="{ mobileMenuOpen: false }">
+    <nav class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur">
+        <div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
+            <a href="index.html" class="text-xl font-bold text-brand-900">Evergreen<span class="text-brand-600">Spanish</span></a>
+            <div class="hidden items-center gap-7 md:flex">
+                <a href="index.html#programs" class="text-sm font-medium text-slate-600 hover:text-brand-700">Programs</a>
+                <a href="accommodation.html" class="text-sm font-medium text-slate-600 hover:text-brand-700">Accommodation</a>
+                <a href="index.html#why-us" class="text-sm font-medium text-slate-600 hover:text-brand-700">Why us</a>
+                <a href="contact.html" class="text-sm font-semibold text-brand-700">Contact</a>
+            </div>
+            <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden rounded-md p-2 text-slate-600">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path x-show="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    <path x-show="mobileMenuOpen" x-cloak stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <div x-show="mobileMenuOpen" x-cloak class="border-t border-slate-200 bg-white md:hidden">
+            <div class="space-y-1 px-4 py-4 text-center">
+                <a href="index.html#programs" class="block rounded-lg px-3 py-2 text-slate-700">Programs</a>
+                <a href="accommodation.html" class="block rounded-lg px-3 py-2 text-slate-700">Accommodation</a>
+                <a href="index.html#why-us" class="block rounded-lg px-3 py-2 text-slate-700">Why us</a>
+                <a href="contact.html" class="block rounded-lg px-3 py-2 font-semibold text-brand-700">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="mx-auto max-w-6xl px-4 pb-6 pt-14 sm:px-6 lg:px-8">
+        <div class="max-w-2xl">
+            <p class="inline-flex rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-700">International admissions</p>
+            <h1 class="mt-4 text-4xl font-extrabold text-slate-900 md:text-5xl">Plan your Spanish experience in Patagonia.</h1>
+            <p class="mt-4 text-lg text-slate-600">Tell us your dates, current level and learning goals. We reply within 24 hours with the best program for you.</p>
+        </div>
+    </header>
+
+    <main class="mx-auto max-w-6xl px-4 pb-20 sm:px-6 lg:px-8">
+        <div class="grid gap-8 md:grid-cols-5">
+            <aside class="rounded-3xl border border-slate-200 bg-white p-7 md:col-span-2">
+                <h2 class="text-xl font-bold text-slate-900">Contact details</h2>
+                <div class="mt-6 space-y-5 text-sm text-slate-600">
+                    <p><span class="block font-semibold text-slate-900">Email</span>info@evergreen-spanish.com</p>
+                    <p><span class="block font-semibold text-slate-900">WhatsApp</span>+54 9 294 4123456</p>
+                    <p><span class="block font-semibold text-slate-900">Address</span>Mitre 1234, Bariloche, Argentina</p>
+                    <p><span class="block font-semibold text-slate-900">Office hours</span>Mon-Fri, 9:00 to 18:00</p>
+                </div>
+            </aside>
+
+            <section class="rounded-3xl border border-slate-200 bg-white p-7 md:col-span-3" x-data="{ status: 'idle', submitForm() { this.status = 'sending'; setTimeout(() => { this.status = 'success'; this.$refs.form.reset(); }, 1400); } }">
+                <h2 class="text-2xl font-bold text-slate-900">Send your inquiry</h2>
+                <p class="mt-2 text-sm text-slate-600">Required fields help us recommend the right course quickly.</p>
+
+                <form @submit.prevent="submitForm()" x-ref="form" class="mt-6 space-y-5">
+                    <div class="grid gap-5 md:grid-cols-2">
+                        <div>
+                            <label for="name" class="mb-2 block text-sm font-medium text-slate-700">Full name</label>
+                            <input id="name" type="text" required class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-brand-600 focus:ring-2 focus:ring-brand-100" placeholder="Your name">
+                        </div>
+                        <div>
+                            <label for="email" class="mb-2 block text-sm font-medium text-slate-700">Email</label>
+                            <input id="email" type="email" required class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-brand-600 focus:ring-2 focus:ring-brand-100" placeholder="you@email.com">
+                        </div>
+                    </div>
+
+                    <div class="grid gap-5 md:grid-cols-2">
+                        <div>
+                            <label for="level" class="mb-2 block text-sm font-medium text-slate-700">Current Spanish level</label>
+                            <select id="level" class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-brand-600 focus:ring-2 focus:ring-brand-100">
+                                <option>Beginner (A0-A1)</option>
+                                <option>Elementary (A2)</option>
+                                <option>Intermediate (B1-B2)</option>
+                                <option>Advanced (C1+)</option>
+                                <option>I am not sure yet</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="start-date" class="mb-2 block text-sm font-medium text-slate-700">Estimated start date</label>
+                            <input id="start-date" type="date" class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-brand-600 focus:ring-2 focus:ring-brand-100">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="message" class="mb-2 block text-sm font-medium text-slate-700">Message</label>
+                        <textarea id="message" rows="5" required class="w-full resize-none rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-brand-600 focus:ring-2 focus:ring-brand-100" placeholder="Tell us your goals, preferred program, and trip length."></textarea>
+                    </div>
+
+                    <button type="submit" :disabled="status === 'sending'" class="inline-flex items-center rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-700 disabled:opacity-60">
+                        <span x-show="status === 'idle'">Send message</span>
+                        <span x-show="status === 'sending'" class="inline-flex items-center">
+                            <svg class="mr-2 h-4 w-4 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0A12 12 0 000 12h4z"></path>
+                            </svg>
+                            Sending...
+                        </span>
+                    </button>
+
+                    <p x-show="status === 'success'" class="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">Thanks! Your message was sent successfully. Our admissions team will contact you soon.</p>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <footer class="border-t border-slate-200 bg-white">
+        <div class="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-10 text-sm text-slate-500 sm:px-6 lg:px-8 md:flex-row md:items-center md:justify-between">
+            <p class="font-semibold text-slate-700">Evergreen Spanish School</p>
+            <p>Bariloche, Patagonia Argentina</p>
+            <p>info@evergreen-spanish.com</p>
+        </div>
+    </footer>
+</body>
+</html>
