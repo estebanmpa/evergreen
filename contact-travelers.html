@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | Evergreen Spanish School</title>
+    <title>Apply | Spanish for Travelers | Evergreen Spanish School</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -34,7 +34,7 @@
                 <a href="accommodation.html" class="text-sm font-medium text-slate-600 hover:text-brand-700">Accommodation</a>
                 <a href="index.html#why-us" class="text-sm font-medium text-slate-600 hover:text-brand-700">Why us</a>
                 <a href="index.html#placement" class="text-sm font-medium text-slate-600 hover:text-brand-700">Placement test</a>
-                <a href="contact.html" class="text-sm font-semibold text-brand-700">Contact</a>
+                <a href="contact.html" class="text-sm font-medium text-slate-600 hover:text-brand-700">Contact</a>
             </div>
             <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden rounded-md p-2 text-slate-600">
                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -49,7 +49,7 @@
                 <a href="accommodation.html" class="block rounded-lg px-3 py-2 text-slate-700">Accommodation</a>
                 <a href="index.html#why-us" class="block rounded-lg px-3 py-2 text-slate-700">Why us</a>
                 <a href="index.html#placement" class="block rounded-lg px-3 py-2 text-slate-700">Placement test</a>
-                <a href="contact.html" class="block rounded-lg px-3 py-2 font-semibold text-brand-700">Contact</a>
+                <a href="contact.html" class="block rounded-lg px-3 py-2 text-slate-700">Contact</a>
             </div>
         </div>
     </nav>
@@ -57,9 +57,9 @@
     <div class="flex-1">
     <header class="mx-auto max-w-6xl px-4 pb-6 pt-14 sm:px-6 lg:px-8">
         <div class="max-w-2xl">
-            <p class="inline-flex rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-700">International admissions</p>
-            <h1 class="mt-4 text-4xl font-extrabold text-slate-900 md:text-5xl">Plan your Spanish experience in Patagonia.</h1>
-            <p class="mt-4 text-lg text-slate-600">Tell us your dates, current level and learning goals. We reply within 24 hours with the best program for you.</p>
+            <p class="inline-flex rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-700">Spanish for Travelers</p>
+            <h1 class="mt-4 text-4xl font-extrabold text-slate-900 md:text-5xl">Apply to Spanish for Travelers.</h1>
+            <p class="mt-4 text-lg text-slate-600">Tell us about your trip and schedule. We reply within 24 hours with availability and the best option for you.</p>
         </div>
     </header>
 
@@ -75,26 +75,43 @@
                 </div>
             </aside>
 
-            <section class="rounded-3xl border border-slate-200 bg-white p-7 md:col-span-3" x-data="{ status: 'idle', submitForm() { this.status = 'sending'; setTimeout(() => { this.status = 'success'; this.$refs.form.reset(); }, 1400); } }">
-                <h2 class="text-2xl font-bold text-slate-900">Send your inquiry</h2>
-                <p class="mt-2 text-sm text-slate-600">Required fields help us recommend the right course quickly.</p>
+            <section class="rounded-3xl border border-slate-200 bg-white p-7 md:col-span-3" x-data="{
+                status: 'idle',
+                classFormat: '',
+                submitForm() {
+                    this.status = 'sending';
+                    setTimeout(() => {
+                        this.status = 'success';
+                        this.classFormat = '';
+                        this.$refs.form.reset();
+                    }, 1400);
+                }
+            }">
+                <h2 class="text-2xl font-bold text-slate-900">Send your application</h2>
+                <p class="mt-2 text-sm text-slate-600">Required fields help us match you with the right schedule and class format.</p>
 
                 <form @submit.prevent="submitForm()" x-ref="form" class="mt-6 space-y-5">
+                    <input type="hidden" name="program" value="Spanish for Travelers">
+
                     <div class="grid gap-5 md:grid-cols-2">
                         <div>
                             <label for="name" class="mb-2 block text-sm font-medium text-slate-700">Full name</label>
-                            <input id="name" type="text" required class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-brand-600 focus:ring-2 focus:ring-brand-100" placeholder="Your name">
+                            <input id="name" name="name" type="text" required class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-brand-600 focus:ring-2 focus:ring-brand-100" placeholder="Your name">
                         </div>
                         <div>
                             <label for="email" class="mb-2 block text-sm font-medium text-slate-700">Email</label>
-                            <input id="email" type="email" required class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-brand-600 focus:ring-2 focus:ring-brand-100" placeholder="you@email.com">
+                            <input id="email" name="email" type="email" required class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-brand-600 focus:ring-2 focus:ring-brand-100" placeholder="you@email.com">
                         </div>
                     </div>
 
                     <div class="grid gap-5 md:grid-cols-2">
                         <div>
+                            <label for="age" class="mb-2 block text-sm font-medium text-slate-700">How old are you?</label>
+                            <input id="age" name="age" type="number" min="1" max="120" required class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-brand-600 focus:ring-2 focus:ring-brand-100" placeholder="Your age">
+                        </div>
+                        <div>
                             <label for="level" class="mb-2 block text-sm font-medium text-slate-700">Current Spanish level</label>
-                            <select id="level" class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-brand-600 focus:ring-2 focus:ring-brand-100">
+                            <select id="level" name="level" class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-brand-600 focus:ring-2 focus:ring-brand-100">
                                 <option>Beginner (A0-A1)</option>
                                 <option>Elementary (A2)</option>
                                 <option>Intermediate (B1-B2)</option>
@@ -102,19 +119,55 @@
                                 <option>I am not sure yet</option>
                             </select>
                         </div>
+                    </div>
+
+                    <div class="grid gap-5 md:grid-cols-2">
                         <div>
                             <label for="start-date" class="mb-2 block text-sm font-medium text-slate-700">Estimated start date</label>
-                            <input id="start-date" type="date" class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-brand-600 focus:ring-2 focus:ring-brand-100">
+                            <input id="start-date" name="startDate" type="date" class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-brand-600 focus:ring-2 focus:ring-brand-100">
+                        </div>
+                        <div>
+                            <label for="availability" class="mb-2 block text-sm font-medium text-slate-700">What is your availability?</label>
+                            <select id="availability" name="availability" required class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-brand-600 focus:ring-2 focus:ring-brand-100">
+                                <option value="">Select one</option>
+                                <option>Morning</option>
+                                <option>Midday – Early afternoon</option>
+                                <option>Afternoon</option>
+                            </select>
                         </div>
                     </div>
 
                     <div>
-                        <label for="message" class="mb-2 block text-sm font-medium text-slate-700">Message</label>
-                        <textarea id="message" rows="5" required class="w-full resize-none rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-brand-600 focus:ring-2 focus:ring-brand-100" placeholder="Tell us your goals, preferred program, and trip length."></textarea>
+                        <label for="interest" class="mb-2 block text-sm font-medium text-slate-700">Why are you interested in our package?</label>
+                        <textarea id="interest" name="interest" rows="3" required class="w-full resize-none rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-brand-600 focus:ring-2 focus:ring-brand-100" placeholder="Tell us what drew you to this program."></textarea>
+                    </div>
+
+                    <fieldset>
+                        <legend class="mb-3 block text-sm font-medium text-slate-700">Are you interested in online or in-person classes?</legend>
+                        <div class="flex flex-wrap gap-4">
+                            <label class="inline-flex cursor-pointer items-center gap-2 text-sm text-slate-700">
+                                <input type="radio" name="classFormat" value="online" x-model="classFormat" required class="h-4 w-4 border-slate-300 text-brand-600 focus:ring-brand-500">
+                                Online
+                            </label>
+                            <label class="inline-flex cursor-pointer items-center gap-2 text-sm text-slate-700">
+                                <input type="radio" name="classFormat" value="in-person" x-model="classFormat" required class="h-4 w-4 border-slate-300 text-brand-600 focus:ring-brand-500">
+                                In-person
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <div x-show="classFormat === 'in-person'" x-cloak>
+                        <label for="stay-duration" class="mb-2 block text-sm font-medium text-slate-700">How long will you be in Bariloche?</label>
+                        <input id="stay-duration" name="stayDuration" type="text" :required="classFormat === 'in-person'" class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-brand-600 focus:ring-2 focus:ring-brand-100" placeholder="e.g. 5 days, 2 weeks">
+                    </div>
+
+                    <div>
+                        <label for="message" class="mb-2 block text-sm font-medium text-slate-700">Additional message</label>
+                        <textarea id="message" name="message" rows="4" class="w-full resize-none rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-brand-600 focus:ring-2 focus:ring-brand-100" placeholder="Anything else we should know about your trip or learning goals."></textarea>
                     </div>
 
                     <button type="submit" :disabled="status === 'sending'" class="inline-flex items-center rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-700 disabled:opacity-60">
-                        <span x-show="status === 'idle'">Send message</span>
+                        <span x-show="status === 'idle'">Send application</span>
                         <span x-show="status === 'sending'" class="inline-flex items-center">
                             <svg class="mr-2 h-4 w-4 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -124,7 +177,7 @@
                         </span>
                     </button>
 
-                    <p x-show="status === 'success'" class="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">Thanks! Your message was sent successfully. Our admissions team will contact you soon.</p>
+                    <p x-show="status === 'success'" class="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">Thanks! Your application was sent successfully. Our admissions team will contact you soon.</p>
                 </form>
             </section>
         </div>

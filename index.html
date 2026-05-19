@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="h-full scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +25,7 @@
         [x-cloak] { display: none !important; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased" x-data="{ courses: [
+<body class="flex min-h-full flex-col bg-slate-50 text-slate-800 antialiased" x-data="{ courses: [
     { id: 1, title: 'Conversation Lab', desc: 'Build confidence with real-life speaking practice.', tag: 'Small groups' },
     { id: 2, title: 'Intensive Spanish', desc: 'Fast progress for students staying 2-12 weeks.', tag: '20h / week' },
     { id: 3, title: 'Spanish for Travelers', desc: 'Essential language for Patagonia adventures.', tag: '1 week' },
@@ -60,6 +60,7 @@
         </div>
     </nav>
 
+    <main class="flex-1">
     <header class="relative overflow-hidden bg-white">
         <div class="absolute inset-0 bg-gradient-to-b from-brand-50 to-transparent"></div>
         <div class="relative mx-auto grid max-w-6xl gap-12 px-4 py-20 sm:px-6 md:grid-cols-2 md:items-center lg:px-8">
@@ -124,23 +125,23 @@
             </div>
 
             <div class="mt-8 space-y-5" x-show="step === 1" style="display:none;">
-                <h3 class="text-lg font-semibold text-slate-900">1) Yesterday I ______ to class.</h3>
-                <label class="block rounded-xl border border-slate-200 p-3"><input type="radio" x-model="ans[1]" value="A"> go</label>
-                <label class="block rounded-xl border border-slate-200 p-3"><input type="radio" x-model="ans[1]" value="B"> went</label>
+                <h3 class="text-lg font-semibold text-slate-900">1) Ayer yo ______ a clase.</h3>
+                <label class="block rounded-xl border border-slate-200 p-3"><input type="radio" x-model="ans[1]" value="A"> voy</label>
+                <label class="block rounded-xl border border-slate-200 p-3"><input type="radio" x-model="ans[1]" value="B"> fui</label>
                 <button @click="step = 2" :disabled="!ans[1]" class="rounded-xl bg-slate-900 px-5 py-2.5 font-semibold text-white disabled:opacity-50">Next</button>
             </div>
 
             <div class="mt-8 space-y-5" x-show="step === 2" style="display:none;">
-                <h3 class="text-lg font-semibold text-slate-900">2) If I had more time, I ______ Spanish every day.</h3>
-                <label class="block rounded-xl border border-slate-200 p-3"><input type="radio" x-model="ans[2]" value="A"> practice</label>
-                <label class="block rounded-xl border border-slate-200 p-3"><input type="radio" x-model="ans[2]" value="B"> would practice</label>
+                <h3 class="text-lg font-semibold text-slate-900">2) Si tuviera más tiempo, ______ español todos los días.</h3>
+                <label class="block rounded-xl border border-slate-200 p-3"><input type="radio" x-model="ans[2]" value="A"> practico</label>
+                <label class="block rounded-xl border border-slate-200 p-3"><input type="radio" x-model="ans[2]" value="B"> practicaría</label>
                 <button @click="step = 3" :disabled="!ans[2]" class="rounded-xl bg-slate-900 px-5 py-2.5 font-semibold text-white disabled:opacity-50">Next</button>
             </div>
 
             <div class="mt-8 space-y-5" x-show="step === 3" style="display:none;">
-                <h3 class="text-lg font-semibold text-slate-900">3) It is important that she ______ on time.</h3>
-                <label class="block rounded-xl border border-slate-200 p-3"><input type="radio" x-model="ans[3]" value="A"> arrives</label>
-                <label class="block rounded-xl border border-slate-200 p-3"><input type="radio" x-model="ans[3]" value="B"> arrive</label>
+                <h3 class="text-lg font-semibold text-slate-900">3) Es importante que ella ______ a tiempo.</h3>
+                <label class="block rounded-xl border border-slate-200 p-3"><input type="radio" x-model="ans[3]" value="A"> llega</label>
+                <label class="block rounded-xl border border-slate-200 p-3"><input type="radio" x-model="ans[3]" value="B"> llegue</label>
                 <button @click="res = 'B1 - Intermediate'; step = 4" :disabled="!ans[3]" class="rounded-xl bg-accent-500 px-5 py-2.5 font-semibold text-white hover:bg-accent-600 disabled:opacity-50">Get result</button>
             </div>
 
@@ -150,8 +151,9 @@
             </div>
         </div>
     </section>
+    </main>
 
-    <footer class="border-t border-slate-200 bg-white">
+    <footer class="mt-auto shrink-0 border-t border-slate-200 bg-white">
         <div class="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-10 text-sm text-slate-500 sm:px-6 lg:px-8 md:flex-row md:items-center md:justify-between">
             <p class="font-semibold text-slate-700">Evergreen Spanish School</p>
             <p>Bariloche, Patagonia Argentina</p>
